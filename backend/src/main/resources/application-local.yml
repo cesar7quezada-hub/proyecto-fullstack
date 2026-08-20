@@ -11,3 +11,7 @@ logging:
   level:
     root: INFO
     cl.cesarquezada.proyecto: DEBUG
+
+jwt:
+  secret: ${JWT_SECRET:local-dev-secret-no-usar-en-produccion-cambiar-siempre}
+  expiration-minutes: ${JWT_EXPIRATION_MINUTES:60}
