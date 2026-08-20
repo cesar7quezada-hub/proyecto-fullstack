@@ -1,0 +1,35 @@
+<div class="dashboard">
+  <header>
+    <h1>Bienvenido, {{ authService.username() }}</h1>
+    <button (click)="logout()">Cerrar sesión</button>
+  </header>
+
+  @if (loading()) {
+    <p>Cargando pólizas…</p>
+  } @else if (errorMessage()) {
+    <p class="error">{{ errorMessage() }}</p>
+  } @else if (polizas().length === 0) {
+    <p>No hay pólizas registradas todavía.</p>
+  } @else {
+    <table>
+      <thead>
+        <tr>
+          <th>N° Póliza</th>
+          <th>Ramo</th>
+          <th>Cliente</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (poliza of polizas(); track poliza.id) {
+          <tr>
+            <td>{{ poliza.numeroPoliza }}</td>
+            <td>{{ poliza.ramo }}</td>
+            <td>{{ poliza.cliente }}</td>
+            <td>{{ poliza.estado }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
